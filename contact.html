@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お問い合わせ | 株式会社ユニオンテクノロジー</title>
+  <meta name="description" content="株式会社ユニオンテクノロジーへのお問い合わせはこちらから。事業相談、パートナーシップのご提案など、お気軽にご連絡ください。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <style>
+    /* 追加样式（不覆盖全局，仅用于 contact 页面特有元素） */
+    :root {
+      --bg-card2: #161620;
+      --fg-subtle: #55556A;
+      --radius-lg: 1.25rem;
+    }
+
+    .page-hero {
+      position: relative;
+      padding: 10rem 0 5rem;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 30%, rgba(61,90,254,0.12), transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(61,90,254,0.06), transparent 70%);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(61,90,254,0.05) 0.5px, transparent 0.5px),
+        linear-gradient(90deg, rgba(61,90,254,0.05) 0.5px, transparent 0.5px);
+      background-size: 80px 80px;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-en); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.25rem;
+    }
+    .eyebrow::before { content: ''; display: block; width: 2rem; height: 0.5px; background: var(--accent); }
+    .page-title {
+      font-family: var(--font-jp); font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.75rem);
+      letter-spacing: -0.02em; line-height: 1.15; color: var(--fg);
+      margin-bottom: 1.25rem;
+    }
+    .page-subtitle {
+      font-family: var(--font-jp); font-size: 1rem; color: var(--fg-muted);
+      line-height: 1.85; max-width: 38rem;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem;
+      font-family: var(--font-en); font-size: 0.75rem; color: var(--fg-subtle);
+    }
+    .breadcrumb a { color: var(--fg-subtle); transition: color var(--transition); }
+    .breadcrumb a:hover { color: var(--fg-muted); }
+    .breadcrumb span { color: var(--fg-muted); }
+
+    .contact-wrapper { padding: 4rem 0 7rem; }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: stretch; /* 让两列高度自动相等 */
+    }
+    @media (max-width: 900px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+    }
+    .panel-title {
+      font-family: var(--font-jp); font-weight: 700; font-size: 1.35rem;
+      letter-spacing: -0.01em; color: var(--fg); margin-bottom: 0.625rem;
+    }
+    .panel-desc {
+      font-family: var(--font-jp); font-size: 0.875rem; color: var(--fg-muted);
+      line-height: 1.85; margin-bottom: 2.5rem;
+    }
+    .info-card {
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+      flex: 1; /* 让信息卡填满剩余高度，与右侧卡片高度匹配 */
+    }
+    .info-item {
+      display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem 1.5rem;
+      border-bottom: 0.5px solid var(--border); transition: background var(--transition);
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-item:hover { background: rgba(255,255,255,0.02); }
+    .info-icon {
+      width: 2.25rem; height: 2.25rem; border-radius: 0.5rem;
+      background: var(--accent-10); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .info-icon svg { width: 1rem; height: 1rem; stroke: var(--accent); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .info-label { font-family: var(--font-jp); font-weight: 600; font-size: 0.8rem; color: var(--fg); }
+    .info-value { font-family: var(--font-jp); font-size: 0.8rem; color: var(--fg-muted); margin-top: 0.125rem; line-height: 1.6; }
+    .lang-badges { display: flex; gap: 0.5rem; margin-top: 0.375rem; flex-wrap: wrap; }
+    .lang-badge {
+      font-family: var(--font-en); font-size: 0.65rem; letter-spacing: 0.08em;
+      padding: 0.2rem 0.625rem; border-radius: 999px;
+      border: 0.5px solid var(--border); color: var(--fg-muted);
+    }
+
+    /* mailto 卡片样式 - 增加上边距以与左侧信息卡片顶部对齐 */
+    .mailto-card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 4.8rem; /* 向下移动，与左侧 .info-card 顶部对齐 */
+    }
+    .mailto-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .mailto-title {
+      font-family: var(--font-jp);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--fg);
+      margin-bottom: 0.75rem;
+    }
+    .mailto-desc {
+      font-family: var(--font-jp);
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+    .mailto-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-jp);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem 2.5rem;
+      border-radius: 0.625rem;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+      border: none;
+      cursor: pointer;
+      align-self: center;
+    }
+    .mailto-btn:hover {
+      background: #2a43e8;
+      transform: translateY(-2px);
+    }
+    .mailto-btn svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* 移动端取消上边距 */
+    @media (max-width: 900px) {
+      .mailto-card {
+        margin-top: 0;
+      }
+    }
+
+    .cta-block {
+      text-align: center;
+      padding: 5rem 0 7rem;
+      border-top: 0.5px solid var(--border);
+      margin-top: 2rem;
+    }
+    .cta-title {
+      font-family: var(--font-jp);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--fg);
+      margin-bottom: 1.5rem;
+    }
+    .cta-desc {
+      font-family: var(--font-jp);
+      font-size: 1rem;
+      color: var(--fg-muted);
+      max-width: 48rem;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="navbar">
+    <div class="container">
+      <nav class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/logo.png" alt="UT Logo" />
+          <div class="nav-logo-text">
+            <span>UNION TECHNOLOGY</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">HOME</a>
+          <a href="company.html">会社概要</a>
+          <a href="contact.html" class="active">お問い合わせ</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+    <div id="mobile-menu">
+      <a href="index.html" onclick="closeMobile()">HOME</a>
+      <a href="company.html" onclick="closeMobile()">会社概要</a>
+      <a href="contact.html" onclick="closeMobile()">お問い合わせ</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-bg"></div>
+      <div class="page-hero-grid"></div>
+      <div class="container page-hero-content">
+        <div class="breadcrumb anim">
+          <a href="index.html">HOME</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>お問い合わせ</span>
+        </div>
+        <span class="eyebrow anim anim-delay-1">Contact Us</span>
+        <h1 class="page-title anim anim-delay-2">お問い合わせ</h1>
+        <p class="page-subtitle anim anim-delay-3">
+          事業に関するご相談、パートナーシップのご提案、メディア取材のご依頼など、
+          どのようなことでもお気軽にお問い合わせください。
+        </p>
+      </div>
+    </section>
+
+    <div class="contact-wrapper">
+      <div class="container">
+        <div class="contact-layout">
+          <div class="left-panel">
+            <h2 class="panel-title anim">ご連絡先・対応情報</h2>
+            <p class="panel-desc anim anim-delay-1">以下の情報をご参考のうえ、メールボタンをクリックしてご連絡ください。</p>
+
+            <div class="info-card anim anim-delay-2">
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <div class="info-label">本社所在地</div>
+                  <div class="info-value">〒105-0003<br>東京都港区西新橋三丁目24番10号<br>ハリファックス御成門ビル4階</div>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div>
+                  <div class="info-label">対応言語</div>
+                  <div class="lang-badges">
+                    <span class="lang-badge">日本語</span>
+                    <span class="lang-badge">中文</span>
+                    <span class="lang-badge">English</span>
+                  </div>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                  <div class="info-label">メールアドレス</div>
+                  <div class="info-value">wilson@uniontech.jp</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="anim anim-delay-1">
+            <div class="mailto-card">
+              <div class="mailto-title">メールでのお問い合わせ</div>
+              <div class="mailto-desc">
+                下のボタンをクリックすると、<br>
+                メールソフトが開きます。必要事項をご記入の上、送信してください。
+              </div>
+              <a href="mailto:wilson@uniontech.jp" class="mailto-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                メールで問い合わせる
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA 区块 -->
+    <section class="cta-block">
+      <div class="container">
+        <div class="cta-title anim">今すぐ私たちと始めましょう</div>
+        <div class="cta-desc anim anim-delay-1">
+          株式会社ユニオンテクノロジーは、革新的なデータ分析と医療ツアーサービスを通じて、<br>
+          お客様に新しい価値を提供します。
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="UT" loading="lazy" />
+          <span>株式会社ユニオンテクノロジー</span>
+        </div>
+        <div class="footer-copy">© <span id="year"></span> Union Technology Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !expanded);
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

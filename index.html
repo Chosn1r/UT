@@ -11,151 +11,159 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   <style>
-    /* 瀑布流布局样式 (323) */
-    .matrix-masonry {
-      margin-top: 4rem;
-    }
-    .matrix-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .matrix-row .matrix-card {
-      flex: 0 0 auto;
-      width: calc(33.333% - 1rem);
-      min-width: 280px;
-      background: var(--bg-card);
-      padding: 2rem;
-      transition: background var(--transition);
-      border-radius: var(--radius);
-      border: 0.5px solid var(--border);
-    }
-    .matrix-row .matrix-card:hover {
-      background: rgba(255,255,255,0.025);
-    }
-    @media (max-width: 900px) {
-      .matrix-row .matrix-card {
-        width: 100%;
-        max-width: 500px;
-      }
-    }
-    .matrix-title {
-      font-family: var(--font-jp);
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
-    }
-    .matrix-desc {
-      font-family: var(--font-jp);
-      font-size: 0.875rem;
-      color: var(--fg-muted);
-      line-height: 1.75;
-    }
-
-    .platform-card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      background: var(--bg-card);
-      padding: 2.5rem;
-      transition: background var(--transition);
-      border-radius: 0;
-    }
-    .platform-card-link:hover {
-      background: rgba(255,255,255,0.05);
-    }
-    .platform-card-link .platform-logo,
-    .platform-card-link .platform-name,
-    .platform-card-link .platform-subtitle,
-    .platform-card-link .platform-desc {
-      transition: none;
-    }
-
-    .pillars-grid {
+    /* ===== 以下为替换矩阵版块的新样式 ===== */
+    /* ディープテック＆デジタルポートフォリオ共用 */
+    .deeptech-section,
+    .digi-section {
+      padding: 7rem 0;
       position: relative;
     }
-    @media (min-width: 769px) {
-      .pillars-grid .pillar-card {
-        position: relative;
-      }
-      .pillars-grid .pillar-card:not(:nth-child(2n))::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 10%;
-        height: 80%;
-        width: 0.5px;
-        background: rgba(255,255,255,0.12);
-        pointer-events: none;
+    .deeptech-section {
+      background: var(--bg);
+    }
+    .digi-section {
+      background: var(--bg-card);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .tech-flex-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    @media (min-width: 1024px) {
+      .tech-flex-wrapper {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 4rem;
       }
     }
-    @media (max-width: 768px) {
-      .pillars-grid .pillar-card:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 10%;
-        width: 80%;
-        height: 0.5px;
-        background: rgba(255,255,255,0.12);
-        pointer-events: none;
-      }
-      .pillars-grid .pillar-card {
-        position: relative;
-      }
+    .tech-intro {
+      flex: 1;
     }
-
-    .platform-grid {
+    .tech-cards-grid {
+      flex: 2;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-top: 4rem;
-      background: transparent;  
-      gap: 0;                    
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
     }
-    @media (max-width: 1024px) {
-      .platform-grid {
+    @media (min-width: 640px) {
+      .tech-cards-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    @media (max-width: 640px) {
-      .platform-grid {
-        grid-template-columns: 1fr;
+    .tech-card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .tech-card:hover {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(61,90,254,0.3);
+    }
+    .tech-card-title {
+      font-family: var(--font-jp);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--fg);
+      padding: 1.2rem 1.5rem 0.25rem 1.5rem;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .tech-card-img {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: #0f0f14;
+    }
+    .tech-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .tech-card:hover .tech-card-img img {
+      transform: scale(1.04);
+    }
+    .tech-card-desc {
+      font-family: var(--font-jp);
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      padding: 0.8rem 1.5rem 1.5rem 1.5rem;
+      margin: 0;
+    }
+
+    /* デジタルポートフォリオ (3カード 円形画像) */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
       }
     }
+    .portfolio-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .portfolio-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+      transition: all 0.4s ease;
+      background: #111116;
+    }
+    .portfolio-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .portfolio-item:hover .portfolio-circle {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(61,90,254,0.15);
+    }
+    .portfolio-item:hover .portfolio-circle img {
+      transform: scale(1.08);
+    }
+    .portfolio-title {
+      font-family: var(--font-jp);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--fg);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .portfolio-desc {
+      font-family: var(--font-jp);
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      max-width: 260px;
+      margin: 0 auto;
+    }
 
-    #ecosystem .platform-card-link {
-      background: #ffffff;
+    /* 移除旧矩阵相关残留样式，确保无冲突 */
+    #matrix {
+      display: none;
     }
-    #ecosystem .platform-card-link:hover {
-      background: #f5f5f5;
-    }
-    #ecosystem .platform-name {
-      color: #111111;
-    }
-    #ecosystem .platform-subtitle {
-      color: #444444;
-    }
-    #ecosystem .platform-desc {
-      color: #333333;
-    }
-    #ecosystem .platform-logo img {
-      transform: scale(1.12);
-      transform-origin: left center;
-      border: none;
+    .matrix-masonry, .matrix-row, .matrix-card {
+      display: none;
     }
 
-    .platform-logo {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* 页面底部CTA区域新增加会社概要链接样式（与顶部导航栏保持一致） */
+    /* ===== CTA区域按钮样式统一为蓝色 ===== */
     .cta-actions {
       display: flex;
       flex-wrap: wrap;
@@ -164,34 +172,65 @@
       align-items: center;
       margin-top: 2rem;
     }
-    .cta-company-link {
-      background: transparent;
-      color: #ffffff;
-      font-family: var(--font-jp);
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.5rem 0.25rem;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: opacity 0.2s ease, color 0.2s ease, border-bottom-color 0.2s;
-      border-bottom: 1px solid transparent;
+    /* 两个按钮都使用相同的蓝色实心样式 */
+    .cta-actions .btn-primary,
+    .cta-actions .btn-primary-solid {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-jp);
+      font-weight: 600;
+      font-size: 0.875rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      text-decoration: none;
+      min-width: 160px;
+    }
+    .cta-actions .btn-primary:hover,
+    .cta-actions .btn-primary-solid:hover {
+      background: #2a43e8;
+      transform: translateY(-1px);
+    }
+    /* 确保之前的cta-company-link样式被覆盖 */
+    .cta-company-link {
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-jp);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.875rem 2rem;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: background var(--transition), transform var(--transition);
+      border-bottom: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      min-width: 160px;
     }
     .cta-company-link:hover {
-      opacity: 0.85;
-      color: var(--accent, #00e5ff);
-      border-bottom-color: var(--accent, #00e5ff);
+      background: #2a43e8;
+      transform: translateY(-1px);
+      color: #fff;
+      border-bottom-color: transparent;
+      opacity: 1;
     }
-    /* 确保按钮组在移动端舒适 */
     @media (max-width: 600px) {
       .cta-actions {
-        gap: 1.2rem;
+        gap: 1rem;
         flex-direction: column;
       }
+      .cta-actions .btn-primary,
+      .cta-actions .btn-primary-solid,
       .cta-company-link {
-        font-size: 1.05rem;
-        padding: 0.4rem 0;
+        min-width: 200px;
       }
     }
   </style>
@@ -336,65 +375,80 @@
       </div>
     </section>
 
-    <!-- CORE BUSINESS MATRIX (323布局) -->
-    <section id="matrix">
+    <!-- ========== 新規：フロンティアテクノロジーベンチャーズ (旧矩阵替换 第一部分) ========== -->
+    <section class="deeptech-section" id="deeptech">
       <div class="container">
-        <span class="eyebrow anim">Core Business Matrix</span>
-        <h2 class="section-title anim anim-delay-1">コア事業マトリクス</h2>
-        <div class="matrix-masonry">
-          <!-- 第一行（3张）：机器人手、3D SLAM、元宇宙 -->
-          <div class="matrix-row">
-            <div class="matrix-card anim">
-              <div class="matrix-title">ヒューマノイドロボットハンドプロジェクト</div>
-              <div class="matrix-desc">日本を代表する電機メーカーのローカルサポートを基盤に、次世代ロボティクス・エコシステムへの本格参入を推進しています。</div>
+        <div class="tech-flex-wrapper">
+          <!-- 左側 テキスト -->
+          <div class="tech-intro anim">
+            <div class="eyebrow" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M12 2a10 10 0 0 1 10 10c0 4-3 7-7 7-1.5 0-3-.5-4-2-1 1.5-2.5 2-4 2-4 0-7-3-7-7a10 10 0 0 1 10-10z"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg>
+              <span>ディープテック</span>
             </div>
-            <div class="matrix-card anim anim-delay-1">
-              <div class="matrix-title">3D SLAMスキャナー</div>
-              <div class="matrix-desc">高精度な三次元マッピング技術を活用した先進ソリューションを提供し、オンプレミス導入およびSaaSサブスクリプションモデルに対応しています。</div>
-            </div>
-            <div class="matrix-card anim anim-delay-2">
-              <div class="matrix-title">メタバース・Web3イノベーション事業</div>
-              <div class="matrix-desc">デジタルリスクマネジメントの枠組みを融合し、Web3保険ソリューションおよび分散型コラボレーション会議システムを開発・運営しています。</div>
-            </div>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">フロンティアテクノロジーベンチャーズ</h2>
+            <p class="section-body" style="max-width: 100%; margin-bottom: 1.25rem;">先進技術を市場へ展開</p>
+            <p class="section-body" style="max-width: 100%; font-size: 0.9rem; margin-bottom: 1rem;">当社は、変革をもたらす可能性を秘めた画期的な技術を特定し、アジア市場全体での現地化と商業的拡大を成功させるために必要な戦略的サポートを提供しています。</p>
+            <p class="section-body" style="max-width: 100%; font-size: 0.9rem;">当社の取り組みは、技術的専門知識と市場情報を組み合わせたもので、知的財産保護と戦略的ポジショニングを通じて、イノベーションが実用化され、競争上の優位性を維持できるよう努めています。</p>
           </div>
-
-          <!-- 第二行（2张）：Tokyo Mini Land、OLLA -->
-          <div class="matrix-row">
-            <div class="matrix-card anim anim-delay-3">
-              <div class="matrix-title">Tokyo Mini Land</div>
-              <div class="matrix-desc">若手起業家およびクリエイティブなプロトタイプ開発を主軸とし、事業化初期段階における実践的なインキュベーション拠点を提供します。</div>
+          <!-- 右側 カード2枚 -->
+          <div class="tech-cards-grid">
+            <div class="tech-card anim anim-delay-1">
+              <div class="tech-card-title">AIインテリジェント端末</div>
+              <div class="tech-card-img">
+                <img src="images/placeholder-ai-device.jpg" alt="AIインテリジェント端末" onerror="this.src='https://placehold.co/600x400/1f1f2a/ffffff?text=AI+Device'">
+              </div>
+              <p class="tech-card-desc">高精度3Dスキャンと人工知能アプリケーションの進歩を、現地市場への適応と戦略的パートナーシップ開発を通じて推進しています。</p>
             </div>
-            <div class="matrix-card anim anim-delay-4">
-              <div class="matrix-title">OLLA</div>
-              <div class="matrix-desc">少子高齢化社会のニーズを見据えたクロスボーダー生活支援プラットフォームとして、高頻度かつ生活必需性の高いサービスを展開しています。</div>
-            </div>
-          </div>
-
-          <!-- 第三行（3张）：YTC、AIH、TAI -->
-          <div class="matrix-row">
-            <div class="matrix-card anim anim-delay-1">
-              <div class="matrix-title">YTC 日中イノベーション・エコシステム母基金</div>
-              <div class="matrix-desc">日本・中国・米国を結ぶハイレベルなPE資本ネットワークを構築し、SPAC上場支援および産業チェーンへの戦略投資を主導しています。</div>
-            </div>
-            <div class="matrix-card anim anim-delay-2">
-              <div class="matrix-title">AIH アジア・イノベーションセンター</div>
-              <div class="matrix-desc">ナスダック起業家センターのアジア教育パートナーとして、世界トップクラスの資本市場へのアクセス機会を提供しています。</div>
-            </div>
-            <div class="matrix-card anim anim-delay-3">
-              <div class="matrix-title">TAI アジア研究所（The Asia Institute）</div>
-              <div class="matrix-desc">アジア有数のシンクタンクとして、産業分析・市場評価・マクロ政策研究を通じて高度な戦略的インサイトを提供しています。</div>
+            <div class="tech-card anim anim-delay-2">
+              <div class="tech-card-title">エエンボディドAIとロボティクス</div>
+              <div class="tech-card-img">
+                <img src="images/placeholder-robotics.jpg" alt="エンボディドAIとロボティクス" onerror="this.src='https://placehold.co/600x400/1f1f2a/ffffff?text=Robotics'">
+              </div>
+              <p class="tech-card-desc">高度なヒューマノイドロボットハンド技術の産業化を、包括的なサービス調整によってサポートしています。</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA (お問い合わせエリア) ページ下部 -->
+    <!-- ========== 新規：デジタルイノベーションポートフォリオ (旧矩阵替换 第二部分) ========== -->
+    <section class="digi-section" id="digital-portfolio">
+      <div class="container">
+        <div class="anim">
+          <h2 class="section-title" style="margin-bottom: 1rem;">デジタルイノベーションポートフォリオ</h2>
+          <p class="section-body" style="max-width: 52rem; margin-bottom: 2rem;">グローバルな信頼ネットワークを活用し、真の可能性を秘めたベンチャー企業がアジア市場で有意義な存在感を確立できるよう支援し、革新的なデジタルアプリケーションに焦点を当てています。</p>
+        </div>
+        <div class="portfolio-grid">
+          <div class="portfolio-item anim anim-delay-1">
+            <div class="portfolio-circle">
+              <img src="images/placeholder-web3.jpg" alt="Web3イノベーションアプリケーション" onerror="this.src='https://placehold.co/300x300/1f1f2a/ffffff?text=Web3'">
+            </div>
+            <h3 class="portfolio-title">Web3イノベーションアプリケーション</h3>
+            <p class="portfolio-desc">分散型テクノロジーとデジタルリスク管理フレームワークの深い統合を探求し、信頼と価値交換の新たなパラダイムを創造しています。</p>
+          </div>
+          <div class="portfolio-item anim anim-delay-2">
+            <div class="portfolio-circle">
+              <img src="images/placeholder-lifestyle.jpg" alt="クロスボーダーライフスタイルサービス" onerror="this.src='https://placehold.co/300x300/1f1f2a/ffffff?text=Lifestyle'">
+            </div>
+            <h3 class="portfolio-title">クロスボーダーライフスタイルサービス</h3>
+            <p class="portfolio-desc">革新的なサービス提供モデルを通じて、日常生活のニーズに対応する包括的な地域エコシステムを構築しています。</p>
+          </div>
+          <div class="portfolio-item anim anim-delay-3">
+            <div class="portfolio-circle">
+              <img src="images/placeholder-trade.jpg" alt="インテリジェント貿易経路" onerror="this.src='https://placehold.co/300x300/1f1f2a/ffffff?text=Trade'">
+            </div>
+            <h3 class="portfolio-title">インテリジェント貿易経路</h3>
+            <p class="portfolio-desc">デジタル化を通じて国境を越えたサプライチェーンを最適化し、市場全体で効率的な商業的実装を可能にしています。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA (お問い合わせエリア) ページ下部 - 两个按钮统一为蓝色实心样式 -->
     <section id="cta">
       <div class="container">
         <div class="cta-title anim">アジア市場への挑戦を、<br>私たちが支援します。</div>
         <div class="cta-desc anim anim-delay-1">法務・財務・IT・AI・インキュベーションを通じて、<br>企業の持続的な成長を支援します。</div>
-        <!-- 変更: 元のbtn単体を 「会社概要 ＋ お問い合わせ」 の横並びに変更（会社概要はトップナビと同一スタイル） -->
         <div class="cta-actions anim anim-delay-2">
           <a href="company.html" class="cta-company-link">会社概要</a>
           <a href="contact.html" class="btn-primary">お問い合わせ</a>
@@ -417,17 +471,42 @@
 
   <script src="js/main.js"></script>
   <script>
-    // モバイルメニュー制御の簡易補完（存在しない場合の影響を避けるため、万一closeMobile未定義なら定義）
+    // モバイルメニュー制御の補完
     if (typeof closeMobile !== 'function') {
       window.closeMobile = function() {
         const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu) mobileMenu.classList.remove('active');
+        if (mobileMenu) mobileMenu.classList.remove('open');
         const hamburger = document.getElementById('hamburger');
         if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+        if (hamburger) hamburger.classList.remove('open');
       };
     }
     // 年の自動更新
     document.getElementById('year') && (document.getElementById('year').innerText = new Date().getFullYear());
+
+    // ナビゲーション スクロール
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ハンバーガー制御
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+    }
+
+    // Intersection Observer (アニメーション)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.anim').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

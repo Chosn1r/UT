@@ -154,6 +154,46 @@
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* 页面底部CTA区域新增加会社概要链接样式（与顶部导航栏保持一致） */
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .cta-company-link {
+      background: transparent;
+      color: #ffffff;
+      font-family: var(--font-jp);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0.25rem;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: opacity 0.2s ease, color 0.2s ease, border-bottom-color 0.2s;
+      border-bottom: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+    }
+    .cta-company-link:hover {
+      opacity: 0.85;
+      color: var(--accent, #00e5ff);
+      border-bottom-color: var(--accent, #00e5ff);
+    }
+    /* 确保按钮组在移动端舒适 */
+    @media (max-width: 600px) {
+      .cta-actions {
+        gap: 1.2rem;
+        flex-direction: column;
+      }
+      .cta-company-link {
+        font-size: 1.05rem;
+        padding: 0.4rem 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -349,12 +389,14 @@
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA (お問い合わせエリア) ページ下部 -->
     <section id="cta">
       <div class="container">
         <div class="cta-title anim">アジア市場への挑戦を、<br>私たちが支援します。</div>
         <div class="cta-desc anim anim-delay-1">法務・財務・IT・AI・インキュベーションを通じて、<br>企業の持続的な成長を支援します。</div>
-        <div class="cta-button anim anim-delay-2">
+        <!-- 変更: 元のbtn単体を 「会社概要 ＋ お問い合わせ」 の横並びに変更（会社概要はトップナビと同一スタイル） -->
+        <div class="cta-actions anim anim-delay-2">
+          <a href="company.html" class="cta-company-link">会社概要</a>
           <a href="contact.html" class="btn-primary">お問い合わせ</a>
         </div>
       </div>
@@ -374,5 +416,18 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // モバイルメニュー制御の簡易補完（存在しない場合の影響を避けるため、万一closeMobile未定義なら定義）
+    if (typeof closeMobile !== 'function') {
+      window.closeMobile = function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu) mobileMenu.classList.remove('active');
+        const hamburger = document.getElementById('hamburger');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+      };
+    }
+    // 年の自動更新
+    document.getElementById('year') && (document.getElementById('year').innerText = new Date().getFullYear());
+  </script>
 </body>
 </html>

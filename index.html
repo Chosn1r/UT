@@ -56,6 +56,7 @@
       line-height: 1.75;
     }
 
+    /* 让整个平台卡片成为可点击链接，且保持原样式，并添加悬停效果 */
     .platform-card-link {
       display: block;
       text-decoration: none;
@@ -75,19 +76,7 @@
       transition: none;
     }
 
-    /* Tokyo Mini Land 整个卡片可点击，并添加悬停效果 */
-    .tokyo-card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-    .tokyo-card-link .tokyo-card {
-      transition: background var(--transition);
-    }
-    .tokyo-card-link:hover .tokyo-card {
-      background: rgba(255,255,255,0.05);
-    }
-
+    /* 四大事業領域：增加透明分割线 */
     .pillars-grid {
       position: relative;
     }
@@ -120,6 +109,55 @@
       .pillars-grid .pillar-card {
         position: relative;
       }
+    }
+
+    /* ========= 修复黑线问题：生态网格无间隙、无深色背景 ========= */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 4rem;
+      background: transparent;   /* 去除深色背景 */
+      gap: 0;                    /* 去除间隙，避免露出底色 */
+    }
+    @media (max-width: 1024px) {
+      .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 白色卡片样式覆盖（确保白底+浅灰边框） */
+    #ecosystem .platform-card-link {
+      background: #ffffff;
+    }
+    #ecosystem .platform-card-link:hover {
+      background: #f5f5f5;
+    }
+    #ecosystem .platform-name {
+      color: #111111;
+    }
+    #ecosystem .platform-subtitle {
+      color: #444444;
+    }
+    #ecosystem .platform-desc {
+      color: #333333;
+    }
+    #ecosystem .platform-logo img {
+      transform: scale(1.12);
+      transform-origin: left center;
+      border: none;
+    }
+
+    /* ========= 新增：Logo 容器在卡片内水平居中 ========= */
+    .platform-logo {
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
@@ -222,48 +260,49 @@
       </div>
     </section>
 
-    <!-- ECOSYSTEM -->
+    <!-- ECOSYSTEM（4个平台卡片统一样式，包含 Tokyo Mini Land） -->
     <section id="ecosystem">
       <div class="ecosystem-bg">
         <img src="images/ecosystem-bg.jpg" alt="" loading="lazy" />
       </div>
       <div class="container" style="position:relative;z-index:2;">
         <span class="eyebrow anim">Asian Ecosystem</span>
-        <h2 class="section-title anim anim-delay-1">エンパワーメント基盤 — 3大支援プラットフォーム</h2>
-        <p class="section-body anim anim-delay-2" style="margin-top:1rem;">イノベーションの発掘から事業化、資本市場へのアクセスまで、3つのプラットフォームが一貫したエコシステムとして機能します。</p>
+        <h2 class="section-title anim anim-delay-1">エンパワーメント基盤 — 4大支援プラットフォーム</h2>
+        <p class="section-body anim anim-delay-2" style="margin-top:1rem;">イノベーションの発掘から事業化、資本市場へのアクセスまで、4つのプラットフォームが一貫したエコシステムとして機能します。</p>
         <div class="platform-grid">
+          <!-- SPACE 9 -->
           <a href="https://space-9.vercel.app/" target="_blank" rel="noopener noreferrer" class="platform-card-link">
             <div class="platform-logo"><img src="images/space9-logo.png" alt="SPACE 9" loading="lazy" /></div>
             <div class="platform-name">SPACE 9</div>
             <div class="platform-subtitle">アクセラレーター＆コミュニティ</div>
             <div class="platform-desc">分散型イノベーション協業ネットワーク。コアテクノロジープロジェクトの実装推進とクロスボーダーリソースの連携を支援。</div>
           </a>
+          <!-- AIS -->
           <a href="https://asiainnovationsummit.lovable.app/" target="_blank" rel="noopener noreferrer" class="platform-card-link">
             <div class="platform-logo"><img src="images/ais-logo.png" alt="AIS" loading="lazy" /></div>
             <div class="platform-name">AIS</div>
             <div class="platform-subtitle">アジア・イノベーション・サミット</div>
             <div class="platform-desc">国際的な情報発信とマッチングプラットフォーム。優れたインキュベーションプロジェクトに、多国籍企業との連携とブランド価値向上の機会を提供。</div>
           </a>
+          <!-- AIRC -->
           <a href="https://asia-innovation-research-center.lovable.app/" target="_blank" rel="noopener noreferrer" class="platform-card-link">
             <div class="platform-logo"><img src="images/airc-logo.png" alt="AIRC" loading="lazy" /></div>
             <div class="platform-name">AIRC</div>
             <div class="platform-subtitle">アジア・イノベーション・リサーチセンター</div>
             <div class="platform-desc">データ支援と産業評価。シンクタンクの知見を活かし、資本運用や戦略策定にデータ根拠を提供。</div>
           </a>
+          <!-- Tokyo Mini Land -->
+          <a href="https://www.tokyominiland.com/" target="_blank" rel="noopener noreferrer" class="platform-card-link">
+            <div class="platform-logo"><img src="images/tokyominiland-logo.png" alt="Tokyo Mini Land" loading="lazy" /></div>
+            <div class="platform-name">Tokyo Mini Land</div>
+            <div class="platform-subtitle">リアル・インキュベーション拠点</div>
+            <div class="platform-desc">若手起業家とクリエイティブプロトタイプのインキュベーションを主導する実体空間。早期段階の事業に対し、東京における物理的な拠点とコミュニティを提供します。</div>
+          </a>
         </div>
-        <a href="https://www.tokyominiland.com/" target="_blank" rel="noopener noreferrer" class="tokyo-card-link">
-          <div class="tokyo-card">
-            <div class="tokyo-logo"><img src="images/tokyominiland-logo.png" alt="Tokyo Mini Land" loading="lazy" /></div>
-            <div>
-              <div class="tokyo-name">Tokyo Mini Land</div>
-              <div class="tokyo-desc">若手起業家とクリエイティブプロトタイプのインキュベーションを主導する実体空間。早期段階の事業に対し、東京における物理的な拠点とコミュニティを提供します。</div>
-            </div>
-          </div>
-        </a>
       </div>
     </section>
 
-    <!-- CORE BUSINESS MATRIX -->
+    <!-- CORE BUSINESS MATRIX (323布局) -->
     <section id="matrix">
       <div class="container">
         <span class="eyebrow anim">Core Business Matrix</span>

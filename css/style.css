@@ -135,15 +135,121 @@ section[id] {
 .ecosystem-bg { position: absolute; inset: 0; pointer-events: none; }
 .ecosystem-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.09; }
 .ecosystem-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, #0A0A0C, rgba(10,10,12,0.7) 50%, #0A0A0C); }
-.platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 4rem; border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; gap: 0.5px; background: var(--border); }
-@media (max-width: 768px) { .platform-grid { grid-template-columns: 1fr; } }
-.platform-card { background: var(--bg-card); padding: 2.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; transition: background var(--transition); }
-.platform-card:hover { background: rgba(255,255,255,0.025); }
-.platform-logo { width: 5rem; height: 5rem; border-radius: 1rem; overflow: hidden; margin-bottom: 1.5rem; background: var(--bg); display: flex; align-items: center; justify-content: center; }
-.platform-logo img { width: 100%; height: 100%; object-fit: cover; }
-.platform-name { font-family: var(--font-en); font-weight: 700; font-size: 1.25rem; color: var(--fg); letter-spacing: -0.01em; margin-bottom: 0.5rem; display: inline-block; }
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 4rem;
+  background: transparent;   
+  gap: 0;                    
+}
+@media (max-width: 1024px) {
+  .platform-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.platform-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg-card);
+  padding: 2rem;
+  transition: background var(--transition);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.platform-card-link:nth-child(4n) {
+  border-right: none;
+}
+.platform-grid:last-child .platform-card-link,
+.platform-card-link:last-child {
+  border-bottom: none;
+}
+@media (max-width: 1024px) and (min-width: 641px) {
+  .platform-card-link:nth-child(2n) {
+    border-right: none;
+  }
+  .platform-card-link:nth-child(2n+1) {
+    border-right: 1px solid var(--border);
+  }
+}
+.platform-card-link:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+#ecosystem .platform-card-link {
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+#ecosystem .platform-card-link:hover {
+  background: #f5f5f5;
+}
+#ecosystem .platform-card-link:nth-child(4n) {
+  border-right: none;
+}
+#ecosystem .platform-grid:last-child .platform-card-link,
+#ecosystem .platform-card-link:last-child {
+  border-bottom: none;
+}
+@media (max-width: 1024px) and (min-width: 641px) {
+  #ecosystem .platform-card-link:nth-child(2n) {
+    border-right: none;
+  }
+  #ecosystem .platform-card-link:nth-child(2n+1) {
+    border-right: 1px solid #e2e8f0;
+  }
+}
+#ecosystem .platform-name {
+  color: #111111;
+}
+#ecosystem .platform-subtitle {
+  color: #444444;
+}
+#ecosystem .platform-desc {
+  color: #333333;
+}
+
+.platform-logo {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 0;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  background: #f8f9fa; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .platform-logo {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+.platform-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#ecosystem .platform-logo img {
+  transform: scale(1.12);
+  transform-origin: center center;
+  border: none;
+}
+
+.platform-name { font-family: var(--font-en); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; display: inline-block; }
 .platform-subtitle { font-family: var(--font-jp); font-size: 0.8rem; color: var(--accent); margin-top: 0.25rem; margin-bottom: 1rem; }
-.platform-desc { font-family: var(--font-jp); font-size: 0.85rem; color: var(--fg-muted); line-height: 1.75; }
+.platform-desc { font-family: var(--font-jp); font-size: 0.85rem; line-height: 1.75; }
 .platform-link-wrapper { transition: opacity var(--transition); }
 .platform-link-wrapper:hover { opacity: 0.8; }
 .tokyo-card { display: flex; align-items: center; gap: 1.5rem; margin-top: 1rem; background: var(--bg-card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.75rem 2rem; }
@@ -153,7 +259,6 @@ section[id] {
 .tokyo-name { font-family: var(--font-en); font-weight: 700; font-size: 1.05rem; color: var(--fg); margin-bottom: 0.25rem; }
 .tokyo-desc { font-family: var(--font-jp); font-size: 0.875rem; color: var(--fg-muted); margin-top: 0.375rem; line-height: 1.75; }
 
-/* CORE BUSINESS MATRIX */
 #matrix { padding: 7rem 0; background: var(--bg); }
 .matrix-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 4rem; }
 .matrix-card { background: var(--bg-card); padding: 2rem; transition: background var(--transition); }
@@ -162,13 +267,11 @@ section[id] {
 .matrix-desc { font-family: var(--font-jp); font-size: 0.875rem; color: var(--fg-muted); line-height: 1.75; }
 @media (max-width: 768px) { .matrix-grid { grid-template-columns: 1fr; } }
 
-/* CTA SECTION (仅用于首页) */
 #cta { padding: 7rem 0; text-align: center; background: var(--bg); }
 .cta-title { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; color: var(--fg); }
 .cta-desc { font-size: 1rem; color: var(--fg-muted); max-width: 48rem; margin: 0 auto 2rem; line-height: 1.8; }
 .cta-button .btn-primary { font-size: 1rem; padding: 1rem 2.5rem; }
 
-/* CONTACT PAGE */
 .contact-page-section { padding: 7rem 0; }
 .contact-page-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 800px; margin: 0 auto; }
 .contact-info-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 2.5rem; text-align: center; }
@@ -178,7 +281,6 @@ section[id] {
 .contact-details-block strong { color: var(--accent); }
 .mail-btn { margin-top: 2rem; }
 
-/* 公司信息卡片 (会社概要页面) */
 .company-info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 3rem; }
 .company-info-card { background: var(--bg-card); padding: 2rem; transition: background var(--transition); }
 .company-info-card:hover { background: rgba(255,255,255,0.025); }

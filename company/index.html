@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>会社概要 | 株式会社ユニオンテクノロジー</title>
+    <meta name="description" content="株式会社ユニオンテクノロジーの会社概要、沿革、グループ会社、アクセス情報をご紹介します。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <style>
+        .info-simple {
+            margin-top: 2rem;
+        }
+        .info-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 0.75rem 0;
+        }
+        .info-label {
+            font-family: var(--font-jp);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
+        .info-value {
+            font-family: var(--font-jp);
+            font-size: 0.9rem;
+            color: var(--fg);
+            line-height: 1.6;
+        }
+        .access-list {
+            margin-top: 1rem;
+            list-style: none;
+            padding: 0;
+        }
+        .access-list li {
+            font-family: var(--font-jp);
+            font-size: 0.9rem;
+            color: var(--fg);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .access-list li::before {
+            content: "●";
+            color: var(--accent);
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+        }
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            border: 0.5px solid var(--border);
+            margin-top: 0.5rem;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        @media (max-width: 768px) {
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+                padding: 0.75rem 0;
+            }
+        }
+
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            .partner-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .partner-card {
+            background: #FFFFFF;          
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: background var(--transition);
+        }
+        .partner-card:hover {
+            background: #F5F5F5;         
+        }
+        .partner-logo {
+            height: 5rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .partner-logo {
+           height: 5rem;
+           width: 100%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin-top: 1rem;       
+           margin-bottom: 1.5rem;
+}
+        .partner-card:hover .partner-logo img {
+            filter: brightness(0.95);
+        }
+        .partner-divider {
+            width: 2rem;
+            height: 1px;
+            background: #E0E0E0;          
+            margin: 0 auto 1rem;
+        }
+        .partner-desc {
+            font-family: var(--font-jp);
+            font-size: 0.75rem;
+            color: #1A1A1A;               
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<header id="navbar">
+    <div class="container">
+        <nav class="nav-inner">
+            <a href="/" class="nav-logo">
+                <img src="/images/logo.png" alt="UT Logo" />
+                <span>UNION TECHNOLOGY</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">HOME</a>
+                <a href="/company/">会社概要</a>
+                <a href="/contact/">お問い合わせ</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </div>
+    <div id="mobile-menu">
+        <a href="/" onclick="closeMobile()">HOME</a>
+        <a href="/company/" onclick="closeMobile()">会社概要</a>
+        <a href="/contact/" onclick="closeMobile()">お問い合わせ</a>
+    </div>
+</header>
+
+<main>
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="anim">
+                    <span class="eyebrow">Company Profile</span>
+                    <h2 class="section-title">会社概要</h2>
+                </div>
+                <div class="anim anim-delay-1">
+                    <p class="section-body" style="max-width:100%;margin-bottom:1.25rem;">
+                        株式会社ユニオンテクノロジー（以下「UT」）は2019年に設立され、東京都港区に本社を構え、データ解析とIT開発を基盤として6年間にわたり深耕を続け、法務・財務、先端医療、ディープテック・インキュベーション、EC事業エコシステムなど複数の領域を横断する、総合的な日本・アジアビジネスプラットフォームへと成長しました。
+                    </p>
+                    <p class="section-body" style="max-width:100%;">
+                        私たちのコア理念は「先行者・耕耘者・培育者」——ペイシェントキャピタルの方法論により、パートナーの市場参入から持続的成長までの全プロセスに寄り添い、不確実性を持続可能な商業価値へと転換します。
+                    </p>
+                </div>
+            </div>
+            <div class="stats-grid anim anim-delay-2">
+                <div class="stat-cell"><div class="stat-value">2019</div><div class="stat-label">設立年</div></div>
+                <div class="stat-cell"><div class="stat-value">東京港区</div><div class="stat-label">本社所在地</div></div>
+                <div class="stat-cell"><div class="stat-value">4</div><div class="stat-label">事業領域</div></div>
+                <div class="stat-cell"><div class="stat-value">6年+</div><div class="stat-label">実績</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section id="journey">
+        <div class="journey-bg">
+            <img src="/images/journey-bg.jpg" alt="" loading="lazy" />
+        </div>
+        <div class="container" style="position:relative;z-index:2;">
+            <span class="eyebrow anim">Our Journey</span>
+            <h2 class="section-title anim anim-delay-1" style="max-width:40rem;">沿革 — データ基盤からアジア・イノベーション・エコシステムへ</h2>
+            <div class="timeline">
+                <div class="timeline-item anim"><div class="timeline-dot"></div><div class="timeline-year">2019</div><div class="timeline-title">創業</div><div class="timeline-desc">動画データ解析およびITシステム開発事業を開始。日本市場向けデジタル運営支援を通じ、データ分析基盤とローカルオペレーションノウハウを蓄積。</div></div>
+                <div class="timeline-item anim anim-delay-1"><div class="timeline-dot"></div><div class="timeline-year">2020–2024</div><div class="timeline-title">法務・財務基盤構築</div><div class="timeline-desc">行政書士法人・税理士法人との連携体制を構築。ビザ、法人設立、税務、法律、資産管理を含むクロスボーダー事業基盤を整備。競合が模倣困難な護城河を形成。</div></div>
+                <div class="timeline-item anim anim-delay-2"><div class="timeline-dot"></div><div class="timeline-year">2024</div><div class="timeline-title">先端医療分野参入</div><div class="timeline-desc">日本の権威ある医療機関と提携し、日中ヘルスケア産業のクロスボーダー転換プラットフォーム構築に着手。顧客資産ポートフォリオにヘルスケア分野を追加。</div></div>
+                <div class="timeline-item anim anim-delay-3"><div class="timeline-dot"></div><div class="timeline-year">2025</div><div class="timeline-title">新規事業部始動</div><div class="timeline-desc">メタバース/DX部門を戦略的に転換、新規事業部として正式アップグレード。SPACE 9バーチャルアクセラレーターを中核に、ディープテック・インキュベーション・エコシステムを構築。</div></div>
+                <div class="timeline-item anim anim-delay-4"><div class="timeline-dot"></div><div class="timeline-year">2026</div><div class="timeline-title">AIコマース対外投資始動</div><div class="timeline-desc">新規事業部によるAIコマース領域への対外投資事業を正式開始。ヒト・モノ・データ・ロジスティクス・ペイメントをつなぐ次世代クロスボーダー・バリューチェーンの構築へ。</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会社情報 -->
+    <section class="contact-page-section">
+        <div class="container">
+            <span class="eyebrow anim">Company Information</span>
+            <h2 class="section-title anim anim-delay-1">会社情報</h2>
+            <div class="info-simple anim anim-delay-2">
+                <div class="info-row">
+                    <div class="info-label">会社名</div>
+                    <div class="info-value">株式会社ユニオンテクノロジー</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">代表者</div>
+                    <div class="info-value">代表取締役 高橋 永吉</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">設立年月</div>
+                    <div class="info-value">2019年10月29日</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">資本金</div>
+                    <div class="info-value">1,000万円</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">所在地</div>
+                    <div class="info-value">〒105-0003<br>東京都港区西新橋三丁目24番10号<br>ハリファックス御成門ビル4階</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">TEL</div>
+                    <div class="info-value">03-6910-3548</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">FAX</div>
+                    <div class="info-value">03-6910-3549</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">E-mail</div>
+                    <div class="info-value">wilson@uniontech.jp</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- グループ関連会社（4社） -->
+    <section class="contact-page-section" id="network">
+        <div class="container">
+            <span class="eyebrow anim">Group Network</span>
+            <h2 class="section-title anim anim-delay-1">関連事業ネットワーク</h2>
+            <p class="section-body anim anim-delay-2" style="max-width: 48rem; margin-bottom: 3rem;">
+                UTグループは、決済・物流・資産管理・貿易など多様な分野のグループ関連会社と連携し、
+                包括的なクロスボーダービジネス・エコシステムを構築しています。
+            </p>
+
+            <div class="partner-grid">
+                <!-- カード 1：GlobePay -->
+                <div class="partner-card anim">
+                    <div class="partner-logo">
+                        <img src="/images/globepay-logo.png" alt="GlobePay" loading="lazy" />
+                    </div>
+                    <div class="partner-divider"></div>
+                    <p class="partner-desc">決済<br>日本環球支付株式会社</p>
+                </div>
+                <!-- カード 2：SANWA -->
+                <div class="partner-card anim anim-delay-1">
+                    <div class="partner-logo">
+                        <img src="/images/sanwa-logo.png" alt="SANWA" loading="lazy" />
+                    </div>
+                    <div class="partner-divider"></div>
+                    <p class="partner-desc">貿易<br>三和商事株式会社</p>
+                </div>
+                <!-- カード 3：Japan Gold -->
+                <div class="partner-card anim anim-delay-2">
+                    <div class="partner-logo">
+                        <img src="/images/japangold-logo.png" alt="Japan Gold" loading="lazy" />
+                    </div>
+                    <div class="partner-divider"></div>
+                    <p class="partner-desc">買取<br>株式会社三和貴金属</p>
+                </div>
+                <!-- カード 4：Nippon Express Trading -->
+                <div class="partner-card anim anim-delay-3">
+                    <div class="partner-logo">
+                        <img src="/images/nipponexpress-logo.png" alt="Nippon Express Trading" loading="lazy" />
+                    </div>
+                    <div class="partner-divider"></div>
+                    <p class="partner-desc">輸出入专門<br>日通貿易株式会社</p>
+                    </div> 
+            </div>
+        </div>
+    </section>
+
+    <!-- アクセス＋地図 -->
+    <section class="contact-page-section">
+        <div class="container">
+            <span class="eyebrow anim">Access</span>
+            <h2 class="section-title anim anim-delay-1">アクセス</h2>
+            <div class="info-simple anim anim-delay-2">
+                <div class="info-row">
+                    <div class="info-label">所在地</div>
+                    <div class="info-value">〒105-0003<br>東京都港区西新橋三丁目24番10号<br>ハリファックス御成門ビル4階</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">最寄り駅</div>
+                    <div class="info-value">
+                        <ul class="access-list">
+                            <li>都営地下鉄三田線「御成門」駅 A4出口より徒歩4分</li>
+                            <li>JR線・東京メトロ「新橋」駅 烏森口より徒歩8分</li>
+                            <li>都営地下鉄大江戸線「大門」駅 A1出口より徒歩6分</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">地図</div>
+                    <div class="info-value">
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6313095028804!2d139.74837747623047!3d35.661454331059474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bbfdf02b5ef%3A0x4a93b1f61f405302!2s3-ch%C5%8Dme-24-10%20Nishishinbashi%2C%20Minato%20City%2C%20Tokyo%20105-0003!5e0!3m2!1szh-CN!2sjp!4v1780361942459!5m2!1szh-CN!2sjp" 
+                                width="600" 
+                                height="450" 
+                                style="border:0;" 
+                                allowfullscreen 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <p style="font-size:0.8rem; color:var(--fg-subtle); margin-top:0.5rem;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせ誘導ボタン -->
+    <div style="text-align: center; margin: 4rem auto 2rem;">
+        <a href="/contact/" class="btn-primary" style="padding: 1rem 2.5rem; font-size: 1rem;">お問い合わせはこちら</a>
+    </div>
+</main>
+
+<footer id="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="/images/logo.png" alt="UT" loading="lazy" />
+                <span>株式会社ユニオンテクノロジー</span>
+            </div>
+            <div class="footer-copy">© <span id="year"></span> Union Technology Inc. All rights reserved.</div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

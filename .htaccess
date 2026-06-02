@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# /company -> company.html
+RewriteRule ^company/?$ company.html [L]
+
+# /contact -> contact.html
+RewriteRule ^contact/?$ contact.html [L]
+
+# /home -> index.html
+RewriteRule ^home/?$ index.html [L]

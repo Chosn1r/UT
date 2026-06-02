@@ -1,15 +1,5 @@
 RewriteEngine On
 
-# home
-RewriteRule ^home/?$ index.html [L]
-
-# company
-RewriteRule ^company/?$ company.html [L]
-
-# contact
-RewriteRule ^contact/?$ contact.html [L]
-
-# 301 Redirect
-RewriteRule ^index\.html$ /home/ [R=301,L]
-RewriteRule ^company\.html$ /company/ [R=301,L]
-RewriteRule ^contact\.html$ /contact/ [R=301,L]
+RewriteRule ^home/?$ ./index.html [L]
+RewriteRule ^company/?$ ./company.html [L]
+RewriteRule ^contact/?$ ./contact.html [L]

@@ -1,9 +1,0 @@
-# 启动URL重写引擎
-RewriteEngine On
-
-# 1. 将访问 /index.html 的用户重定向到 /home/
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
-RewriteRule ^index\.html$ /home/ [R=301,L]
-
-# 2. 当用户访问 /home/ 时，在后台显示 /home.html 的内容，而浏览器地址栏URL保持不变
-RewriteRule ^home/?$ /home.html [L]
